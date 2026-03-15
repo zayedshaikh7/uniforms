@@ -45,10 +45,10 @@ export default function About() {
       </section>
 
       <section className="section">
-        <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto', padding: '0 var(--container-padding)' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.3fr', gap: 'var(--space-2xl)', alignItems: 'center' }}>
+        <div className="container" style={{ margin: '0 auto' }}>
+          <div className="grid-2-1">
             <div className={`reveal ${isRevealed(0) ? 'visible' : ''}`} style={{
-              height: '400px',
+              height: 'var(--logo-height, 400px)',
               borderRadius: 'var(--card-radius)',
               backgroundImage: 'url(\'/images/logo.png\')',
               backgroundSize: 'contain',
@@ -59,7 +59,7 @@ export default function About() {
               padding: '0'
             }}></div>
             <div className={`reveal ${isRevealed(1) ? 'visible' : ''}`}>
-              <h2 className="heading-h2" style={{ marginBottom: 'var(--space-lg)' }}>Company Overview</h2>
+              <h2 className="heading-h2 text-center-mobile" style={{ marginBottom: 'var(--space-lg)' }}>Company Overview</h2>
               <p className="body-text" style={{ marginBottom: 'var(--space-md)', color: 'var(--color-text-muted)' }}>I & S Global Enterprises is a Mumbai (Maharashtra) based company that finds its roots back in 2001. We are engaged as a manufacturer and supplier of a wide range of uniforms and workwear for various industries across India.</p>
               <p className="body-text" style={{ marginBottom: 'var(--space-md)', color: 'var(--color-text-muted)' }}>With our state-of-the-art manufacturing unit and dedicated team of professionals, we deliver exceptional quality products that meet the highest industry standards. Our commitment to excellence has made us a trusted partner for businesses across multiple sectors.</p>
               <p className="body-text" style={{ color: 'var(--color-text-muted)' }}>Located in Mumbai's Trombay area, we serve clients nationwide with custom-made uniforms tailored to specific industry requirements. Our product range spans industrial workwear, medical uniforms, hospitality attire, corporate wear, and specialty uniforms.</p>
@@ -69,9 +69,9 @@ export default function About() {
       </section>
 
       <section className="section" style={{ background: 'var(--color-bg-mid)' }}>
-        <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto', padding: '0 var(--container-padding)' }}>
+        <div className="container" style={{ margin: '0 auto' }}>
           <h2 className="heading-h2 section__title">Our Infrastructure</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-xl)' }}>
+          <div className="grid-3">
             <div className={`reveal ${isRevealed(2) ? 'visible' : ''}`} style={{ background: 'white', padding: 'var(--space-xl)', borderRadius: 'var(--card-radius)', boxShadow: 'var(--shadow-card)', textAlign: 'center' }}>
               <div style={{ fontSize: '3rem', marginBottom: 'var(--space-md)' }}>🏭</div>
               <h3 className="heading-h3" style={{ marginBottom: 'var(--space-md)' }}>Manufacturing Unit</h3>
@@ -92,8 +92,8 @@ export default function About() {
       </section>
 
       <section className="section">
-        <div style={{ maxWidth: '900px', margin: '0 auto', padding: '0 var(--container-padding)', textAlign: 'center' }}>
-          <div className={`reveal ${isRevealed(5) ? 'visible' : ''}`} style={{ background: 'var(--color-bg-mid)', padding: 'var(--space-2xl)', borderRadius: 'var(--card-radius)', borderLeft: '4px solid var(--color-accent)' }}>
+        <div className="container" style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
+          <div className={`reveal ${isRevealed(5) ? 'visible' : ''}`} style={{ background: 'var(--color-bg-mid)', padding: 'var(--space-responsive, var(--space-2xl))', borderRadius: 'var(--card-radius)', borderLeft: '4px solid var(--color-accent)' }}>
             <div style={{ fontSize: '3rem', marginBottom: 'var(--space-md)' }}>👥</div>
             <h2 className="heading-h2" style={{ marginBottom: 'var(--space-lg)' }}>Our People</h2>
             <p className="body-text" style={{ fontSize: '1.1rem', lineHeight: '1.8', color: 'var(--color-text-muted)' }}>Our team comprises brilliant and knowledgeable professionals who are dedicated to delivering excellence in every aspect of our operations. From skilled craftspeople on the production floor to experienced managers overseeing quality and delivery, each team member plays a vital role in our success. Their expertise, commitment, and attention to detail ensure that every product we manufacture meets the exacting standards our clients expect.</p>
@@ -102,10 +102,10 @@ export default function About() {
       </section>
 
       <section className="section" style={{ background: 'var(--color-bg-light)' }}>
-        <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto', padding: '0 var(--container-padding)' }}>
+        <div className="container" style={{ margin: '0 auto' }}>
           <h2 className="heading-h2 section__title">Why Choose I & S Global Enterprises</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 'var(--space-xl)' }}>
-            <div className={`reveal ${isRevealed(6) ? 'visible' : ''}`} style={{ background: 'white', padding: 'var(--space-xl)', borderRadius: 'var(--card-radius)', boxShadow: 'var(--shadow-card)', borderTop: '3px solid var(--color-accent)' }}>
+          <div className="grid-2">
+            <div className={`reveal ${isRevealed(6) ? 'visible' : ''}`} style={{ background: 'white', padding: 'var(--space-lg)', borderRadius: 'var(--card-radius)', boxShadow: 'var(--shadow-card)', borderTop: '3px solid var(--color-accent)' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)', marginBottom: 'var(--space-md)' }}>
                 <div style={{ fontSize: '2.5rem', color: 'var(--color-accent)' }}>01</div>
                 <h3 className="heading-h3">Excellent Infrastructure</h3>
@@ -133,7 +133,7 @@ export default function About() {
               </div>
               <p className="body-text" style={{ color: 'var(--color-text-muted)', lineHeight: '1.8' }}>We offer the best value for money without compromising on quality, combining efficient production processes with fair pricing to benefit our clients.</p>
             </div>
-            <div className={`reveal ${isRevealed(10) ? 'visible' : ''}`} style={{ background: 'white', padding: 'var(--space-xl)', borderRadius: 'var(--card-radius)', boxShadow: 'var(--shadow-card)', borderTop: '3px solid var(--color-accent)', gridColumn: '1 / -1', maxWidth: '600px', margin: '0 auto', width: '100%' }}>
+            <div className={`reveal ${isRevealed(10) ? 'visible' : ''}`} style={{ background: 'white', padding: 'var(--space-lg)', borderRadius: 'var(--card-radius)', boxShadow: 'var(--shadow-card)', borderTop: '3px solid var(--color-accent)', gridColumn: 'var(--grid-full-width, 1 / -1)', maxWidth: '600px', margin: '0 auto', width: '100%' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)', marginBottom: 'var(--space-md)' }}>
                 <div style={{ fontSize: '2.5rem', color: 'var(--color-accent)' }}>05</div>
                 <h3 className="heading-h3">Highest Quality Standards</h3>

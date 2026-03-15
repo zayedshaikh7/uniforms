@@ -39,7 +39,7 @@
 
   /* Layout */
   --container-max: 1280px;
-  --container-padding: clamp(16px, 4vw, 80px);
+  --container-padding: clamp(20px, 5vw, 80px);
   --grid-gap: 24px;
   --card-radius: 12px;
   --btn-radius: 6px;
@@ -53,6 +53,11 @@
   --transition-fast: 150ms ease;
   --transition-mid: 300ms ease;
   --transition-slow: 600ms ease;
+
+  /* Responsive Variables */
+  --logo-height: 400px;
+  --space-responsive: var(--space-2xl);
+  --space-responsive-v: var(--space-2xl);
 }
 
 /* ========================================
@@ -994,20 +999,30 @@ ol {
 .grid-2-1 {
   display: grid;
   grid-template-columns: 1fr 1.3fr;
-  gap: var(--space-2xl);
+  gap: var(--grid-gap-dynamic, var(--space-2xl));
   align-items: center;
 }
 
-.grid-3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-xl);
+.container {
+  max-width: var(--container-max);
+  padding: 0 var(--container-padding);
+  width: 100%;
 }
 
 .grid-2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-xl);
+  gap: var(--grid-gap-dynamic, var(--space-xl));
+}
+
+.text-center-mobile {
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .text-center-mobile {
+    text-align: center;
+  }
 }
 
 /* ========================================
@@ -1037,6 +1052,17 @@ ol {
 
   .grid-2-1 {
     grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  :root {
+    --space-2xl: 40px;
+    --space-xl: 24px;
+    --space-3xl: 56px;
+    --grid-gap-dynamic: var(--space-md);
+    --logo-height: 250px;
+    --space-responsive: var(--space-md);
+    --space-responsive-v: var(--space-lg);
   }
 }
 

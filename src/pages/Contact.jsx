@@ -35,7 +35,7 @@ export default function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     // Extract form data
     const formData = new FormData(form.current);
     const data = {
@@ -48,7 +48,7 @@ export default function Contact() {
     };
 
     // Format the WhatsApp message
-    const whatsappMessage = 
+    const whatsappMessage =
       `*New Inquiry from I & S Website*\n\n` +
       `*Name:* ${data.name}\n` +
       `*Company:* ${data.company || "N/A"}\n` +
@@ -58,7 +58,7 @@ export default function Contact() {
       `*Message:* ${data.message}`;
 
     const encodedMessage = encodeURIComponent(whatsappMessage);
-    const phoneNumber = "917400385575"; // International format without +
+    const phoneNumber = "917400385574"; // International format without +
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
     // Redirect to WhatsApp
@@ -83,9 +83,9 @@ export default function Contact() {
       </section>
 
       <section className="section">
-        <div style={{ maxWidth: 'var(--container-max)', margin: '0 auto', padding: '0 var(--container-padding)' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: 'var(--space-2xl)', alignItems: 'start' }}>
-            
+        <div className="container" style={{ margin: '0 auto' }}>
+          <div className="grid-2-1" style={{ alignItems: 'start' }}>
+
             <div className={`reveal ${isRevealed(0) ? 'visible' : ''}`}>
               <div style={{ background: 'var(--color-bg-mid)', padding: 'var(--space-xl)', borderRadius: 'var(--card-radius)', marginBottom: 'var(--space-xl)' }}>
                 <h2 className="heading-h3" style={{ marginBottom: 'var(--space-lg)', color: 'var(--color-primary)' }}>Contact Information</h2>
@@ -98,10 +98,10 @@ export default function Contact() {
                 <div style={{ marginBottom: 'var(--space-lg)' }}>
                   <h4 style={{ fontWeight: 600, marginBottom: 'var(--space-sm)', color: 'var(--color-text-primary)' }}>📍 Address</h4>
                   <p className="body-text" style={{ color: 'var(--color-text-muted)', lineHeight: '1.8' }}>
-                    A Sector, K-2 Line, Room-6<br/>
-                    Cheeta Camp Trombay<br/>
-                    Landmark: Gulshan E Baghdad Masjid<br/>
-                    Mumbai, Maharashtra – 400088<br/>
+                    A Sector, K-2 Line, Room-6<br />
+                    Cheeta Camp Trombay<br />
+                    Landmark: Gulshan E Baghdad Masjid<br />
+                    Mumbai, Maharashtra – 400088<br />
                     India
                   </p>
                 </div>
@@ -109,8 +109,8 @@ export default function Contact() {
                 <div style={{ marginBottom: 'var(--space-lg)' }}>
                   <h4 style={{ fontWeight: 600, marginBottom: 'var(--space-sm)', color: 'var(--color-text-primary)' }}>📞 Phone Numbers</h4>
                   <p className="body-text" style={{ color: 'var(--color-text-muted)', lineHeight: '1.8' }}>
-                    +91-7400385575<br/>
-                    +91-7400385574<br/>
+                    +91-7400385575<br />
+                    +91-7400385574<br />
                     +91-8976950228
                   </p>
                 </div>
@@ -118,7 +118,7 @@ export default function Contact() {
                 <div style={{ marginBottom: 'var(--space-lg)' }}>
                   <h4 style={{ fontWeight: 600, marginBottom: 'var(--space-sm)', color: 'var(--color-text-primary)' }}>✉️ Email</h4>
                   <p className="body-text" style={{ color: 'var(--color-text-muted)', lineHeight: '1.8' }}>
-                    iandsglobal11@gmail.com<br/>
+                    iandsglobal11@gmail.com<br />
                     ansariataullah94@gmail.com
                   </p>
                 </div>
@@ -133,7 +133,7 @@ export default function Contact() {
                 <div style={{ background: 'white', padding: 'var(--space-lg)', borderRadius: 'var(--card-radius)', boxShadow: 'var(--shadow-card)', textAlign: 'center' }}>
                   <div style={{ fontSize: '2rem', marginBottom: 'var(--space-sm)' }}>⏰</div>
                   <h4 className="heading-h3" style={{ fontSize: '1rem', marginBottom: 'var(--space-xs)' }}>Business Hours</h4>
-                  <p style={{ fontSize: 'var(--text-small)', color: 'var(--color-text-muted)' }}>Monday - Saturday<br/>9:00 AM - 6:00 PM</p>
+                  <p style={{ fontSize: 'var(--text-small)', color: 'var(--color-text-muted)' }}>Monday - Saturday<br />9:00 AM - 6:00 PM</p>
                 </div>
               </div>
             </div>
@@ -153,7 +153,7 @@ export default function Contact() {
                     <input type="text" id="company" name="company_name" className="form-input" placeholder="Enter your company name" />
                   </div>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 'var(--space-md)' }}>
+                  <div className="grid-2" style={{ gap: 'var(--space-md)' }}>
                     <div className="form-group">
                       <label className="form-label" htmlFor="phone">Phone Number *</label>
                       <input type="tel" id="phone" name="phone_number" className="form-input" required placeholder="+91" />
@@ -191,15 +191,15 @@ export default function Contact() {
       </section>
 
       <section style={{ padding: '0', background: 'var(--color-bg-mid)' }}>
-          <div style={{ padding: 'var(--space-2xl) 0', maxWidth: 'var(--container-max)', margin: '0 auto' }}>
+        <div className="container" style={{ padding: 'var(--space-responsive-v) 0', margin: '0 auto' }}>
           <h2 className="heading-h2" style={{ textAlign: 'center', marginBottom: 'var(--space-xl)' }}>Find Us</h2>
-          <a 
-            href="https://www.google.com/maps/search/I+%26+S+Global+Enterprises+Room+No.+1,+Sector+A+Line,+Cheeta+Camp+Trombay,+Mankhurd,+Mumbai,+Maharashtra,+400088,+India" 
-            target="_blank" 
+          <a
+            href="https://www.google.com/maps/search/I+%26+S+Global+Enterprises+Room+No.+1,+Sector+A+Line,+Cheeta+Camp+Trombay,+Mankhurd,+Mumbai,+Maharashtra,+400088,+India"
+            target="_blank"
             rel="noopener noreferrer"
             style={{ display: 'block', textDecoration: 'none' }}
           >
-            <div className="map-placeholder" style={{ width: '100%', height: '400px', background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent-warm) 100%)', borderRadius: 'var(--card-radius)', boxShadow: 'var(--shadow-card)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '1.2rem', transition: 'var(--transition-mid)', cursor: 'pointer' }}>
+            <div className="map-placeholder" style={{ width: '100%', height: 'var(--logo-height, 400px)', background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent-warm) 100%)', borderRadius: 'var(--card-radius)', boxShadow: 'var(--shadow-card)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '1.2rem', transition: 'var(--transition-mid)', cursor: 'pointer' }}>
               <span style={{ fontSize: '3rem', marginBottom: 'var(--space-md)' }}>📍</span>
               <span>Cheeta Camp Trombay, Mumbai - 400088</span>
               <span style={{ fontSize: 'var(--text-small)', opacity: '0.8', marginTop: 'var(--space-sm)' }}>Click to view on Google Maps</span>
