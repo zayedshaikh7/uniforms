@@ -1,17 +1,12 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 
 export default function Contact() {
-  const [revealedElements, setRevealedElements] = useState(new Set());
-
   useEffect(() => {
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          const id = entry.target.getAttribute('data-reveal-id');
-          if (id) {
-            setRevealedElements(prev => new Set([...prev, id]));
-          }
+          entry.target.classList.add('visible');
         }
       });
     }, {
@@ -20,16 +15,12 @@ export default function Contact() {
     });
 
     const revealElements = document.querySelectorAll('.reveal');
-    revealElements.forEach((el, index) => {
-      const id = `reveal-${index}`;
-      el.setAttribute('data-reveal-id', id);
+    revealElements.forEach((el) => {
       revealObserver.observe(el);
     });
 
     return () => revealObserver.disconnect();
   }, []);
-
-  const isRevealed = (index) => revealedElements.has(`reveal-${index}`);
 
   const form = useRef();
 
@@ -86,7 +77,7 @@ export default function Contact() {
         <div className="container" style={{ margin: '0 auto' }}>
           <div className="grid-2-1" style={{ alignItems: 'start' }}>
 
-            <div className={`reveal ${isRevealed(0) ? 'visible' : ''}`}>
+            <div className="reveal">
               <div style={{ background: 'var(--color-bg-mid)', padding: 'var(--space-xl)', borderRadius: 'var(--card-radius)', marginBottom: 'var(--space-xl)' }}>
                 <h2 className="heading-h3" style={{ marginBottom: 'var(--space-lg)', color: 'var(--color-primary)' }}>Contact Information</h2>
 
@@ -138,7 +129,7 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className={`reveal ${isRevealed(1) ? 'visible' : ''}`}>
+            <div className="reveal">
               <div style={{ background: 'white', padding: 'var(--space-2xl)', borderRadius: 'var(--card-radius)', boxShadow: 'var(--shadow-card)' }}>
                 <h2 className="heading-h3" style={{ marginBottom: 'var(--space-lg)', color: 'var(--color-primary)' }}>Send Us an Inquiry</h2>
 

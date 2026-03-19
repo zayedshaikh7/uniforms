@@ -12,14 +12,9 @@ function App() {
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="products" element={<Products />} />
+        <Route path="products/category/:categoryId" element={<Products />} />
         <Route path="contact" element={<Contact />} />
-        
-        {/* Category Routes - Pointing to Products for now */}
-        <Route path="category-industrial" element={<Products />} />
-        <Route path="category-medical" element={<Products />} />
-        <Route path="category-hospitality" element={<Products />} />
-        <Route path="category-corporate" element={<Products />} />
-        <Route path="category-specialty" element={<Products />} />
+        <Route path="*" element={<Home />} />
       </Route>
     </Routes>
   )

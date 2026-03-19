@@ -1,23 +1,20 @@
-import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect, useState, useRef } from 'react'
+import { Link, useParams, useNavigate } from 'react-router-dom'
+import { categories } from '../data/products'
 
 export default function Products() {
+  const { categoryId } = useParams();
+  const navigate = useNavigate();
   const [focusedCard, setFocusedCard] = useState(null);
+  const itemsSectionRef = useRef(null);
 
-  const [revealedElements, setRevealedElements] = useState(new Set());
-
-  const toggleFocus = (id) => {
-    setFocusedCard(focusedCard === id ? null : id);
-  };
+  const selectedCategory = categories.find(c => c.id === categoryId);
 
   useEffect(() => {
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          const id = entry.target.getAttribute('data-reveal-id');
-          if (id) {
-            setRevealedElements(prev => new Set([...prev, id]));
-          }
+          entry.target.classList.add('visible');
         }
       });
     }, {
@@ -26,16 +23,18 @@ export default function Products() {
     });
 
     const revealElements = document.querySelectorAll('.reveal');
-    revealElements.forEach((el, index) => {
-      const id = `reveal-${index}`;
-      el.setAttribute('data-reveal-id', id);
+    revealElements.forEach((el) => {
       revealObserver.observe(el);
     });
 
-    return () => revealObserver.disconnect();
-  }, []);
+    if (selectedCategory && itemsSectionRef.current) {
+      setTimeout(() => {
+        itemsSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
 
-  const isRevealed = (index) => revealedElements.has(`reveal-${index}`);
+    return () => revealObserver.disconnect();
+  }, [selectedCategory]);
 
   return (
     <>
@@ -51,121 +50,58 @@ export default function Products() {
         </div>
       </section>
 
-      <section className="categories" style={{ padding: 'var(--space-3xl) 0' }}>
-        <h2 className="heading-h2 section__title">Product Categories</h2>
-        <div className="categories__grid">
-          {/* 1. Corporate Uniform */}
-          <div 
-            className={`category-card reveal ${isRevealed(0) ? 'visible' : ''} ${focusedCard === 1 ? 'is-focused' : ''}`}
-            onClick={() => toggleFocus(1)}
-          >
-            <div className="category-card__bg" style={{ backgroundImage: `url('/images/corprate.png')` }}></div>
-            <div className="category-card__content">
-              <h3 className="heading-h3 category-card__title">Corporate Uniform</h3>
-              <span className="category-card__badge">Premium Quality</span>
-            </div>
-          </div>
-          {/* 2. Industrial Uniforms */}
-          <div 
-            className={`category-card reveal ${isRevealed(1) ? 'visible' : ''} ${focusedCard === 2 ? 'is-focused' : ''}`}
-            onClick={() => toggleFocus(2)}
-          >
-            <div className="category-card__bg" style={{ backgroundImage: `url('/images/industry.png')` }}></div>
-            <div className="category-card__content">
-              <h3 className="heading-h3 category-card__title">Industrial Uniforms</h3>
-              <span className="category-card__badge">Durable Wear</span>
-            </div>
-          </div>
-          {/* 3. Hotel Uniform */}
-          <div 
-            className={`category-card reveal ${isRevealed(2) ? 'visible' : ''} ${focusedCard === 3 ? 'is-focused' : ''}`}
-            onClick={() => toggleFocus(3)}
-          >
-            <div className="category-card__bg" style={{ backgroundImage: `url('/images/hotel.png')` }}></div>
-            <div className="category-card__content">
-              <h3 className="heading-h3 category-card__title">Hotel Uniform</h3>
-              <span className="category-card__badge">Hospitality Expert</span>
-            </div>
-          </div>
-          {/* 4. Hospital Uniform */}
-          <div 
-            className={`category-card reveal ${isRevealed(3) ? 'visible' : ''} ${focusedCard === 4 ? 'is-focused' : ''}`}
-            onClick={() => toggleFocus(4)}
-          >
-            <div className="category-card__bg" style={{ backgroundImage: `url('/images/hospital.png')` }}></div>
-            <div className="category-card__content">
-              <h3 className="heading-h3 category-card__title">Hospital Uniform</h3>
-              <span className="category-card__badge">Medical Grade</span>
-            </div>
-          </div>
-          {/* 5. Construction Uniform */}
-          <div 
-            className={`category-card reveal ${isRevealed(4) ? 'visible' : ''} ${focusedCard === 5 ? 'is-focused' : ''}`}
-            onClick={() => toggleFocus(5)}
-          >
-            <div className="category-card__bg" style={{ backgroundImage: `url('/images/contruction.png')` }}></div>
-            <div className="category-card__content">
-              <h3 className="heading-h3 category-card__title">Construction Uniform</h3>
-              <span className="category-card__badge">Safety First</span>
-            </div>
-          </div>
-          {/* 6. Security & Police */}
-          <div 
-            className={`category-card reveal ${isRevealed(5) ? 'visible' : ''} ${focusedCard === 6 ? 'is-focused' : ''}`}
-            onClick={() => toggleFocus(6)}
-          >
-            <div className="category-card__bg" style={{ backgroundImage: `url('/images/security.png')` }}></div>
-            <div className="category-card__content">
-              <h3 className="heading-h3 category-card__title">Security & Police</h3>
-              <span className="category-card__badge">Public Service</span>
-            </div>
-          </div>
-          {/* 7. Housekeeping Uniform */}
-          <div 
-            className={`category-card reveal ${isRevealed(6) ? 'visible' : ''} ${focusedCard === 7 ? 'is-focused' : ''}`}
-            onClick={() => toggleFocus(7)}
-          >
-            <div className="category-card__bg" style={{ backgroundImage: `url('/images/housekeeping.png')` }}></div>
-            <div className="category-card__content">
-              <h3 className="heading-h3 category-card__title">Housekeeping Uniform</h3>
-              <span className="category-card__badge">Facility Management</span>
-            </div>
-          </div>
-          {/* 8. Polo T shirt */}
-          <div 
-            className={`category-card reveal ${isRevealed(7) ? 'visible' : ''} ${focusedCard === 8 ? 'is-focused' : ''}`}
-            onClick={() => toggleFocus(8)}
-          >
-            <div className="category-card__bg" style={{ backgroundImage: `url('/images/polo.png')` }}></div>
-            <div className="category-card__content">
-              <h3 className="heading-h3 category-card__title">Polo T shirt</h3>
-              <span className="category-card__badge">Casual Corporate</span>
-            </div>
-          </div>
-          {/* 9. School Uniform */}
-          <div 
-            className={`category-card reveal ${isRevealed(8) ? 'visible' : ''} ${focusedCard === 9 ? 'is-focused' : ''}`}
-            onClick={() => toggleFocus(9)}
-          >
-            <div className="category-card__bg" style={{ backgroundImage: `url('/images/school.png')` }}></div>
-            <div className="category-card__content">
-              <h3 className="heading-h3 category-card__title">School Uniform</h3>
-              <span className="category-card__badge">Education Wear</span>
-            </div>
-          </div>
-          {/* 10. Promotional Gift Items */}
-          <div 
-            className={`category-card reveal ${isRevealed(9) ? 'visible' : ''} ${focusedCard === 10 ? 'is-focused' : ''}`}
-            onClick={() => toggleFocus(10)}
-          >
-            <div className="category-card__bg" style={{ backgroundImage: `url('/images/gift.png')` }}></div>
-            <div className="category-card__content">
-              <h3 className="heading-h3 category-card__title">Promotional Gift Items</h3>
-              <span className="category-card__badge">Brand Identity</span>
-            </div>
+      <section className="categories" style={{ padding: 'var(--space-xl) 0' }}>
+        <div className="container">
+          <h2 className="heading-h2 section__title">Product Categories</h2>
+          <div className="categories__grid">
+            {categories.map((cat, index) => (
+              <div
+                key={cat.id}
+                onClick={() => navigate(`/products/category/${cat.id}`)}
+                className={`category-card ${focusedCard === index + 1 ? 'is-focused' : ''} ${categoryId === cat.id ? 'is-active' : ''}`}
+                onMouseEnter={() => setFocusedCard(index + 1)}
+                onMouseLeave={() => setFocusedCard(null)}
+                style={{ cursor: 'pointer' }}
+              >
+                <div className="category-card__bg" style={{ backgroundImage: `url('${cat.image}')` }}></div>
+                <div className="category-card__content">
+                  <h3 className="heading-h3 category-card__title">{cat.title}</h3>
+                  <span className="category-card__badge">{cat.badge}</span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
+
+      {selectedCategory && (
+        <section ref={itemsSectionRef} className="category-items" style={{ padding: 'var(--space-2xl) 0', background: 'var(--color-bg-mid)' }}>
+          <div className="container">
+            <div className="section-header" style={{ textAlign: 'center', marginBottom: 'var(--space-xl)' }}>
+              <h2 className="heading-h2">{selectedCategory.title}</h2>
+              <p className="body-text" style={{ maxWidth: '700px', margin: 'var(--space-md) auto 0' }}>
+                Explore our full range of high-quality {selectedCategory.title.toLowerCase()} specifically designed for professional environments.
+              </p>
+            </div>
+            <div className="items-grid">
+              {selectedCategory.items.map((item, index) => (
+                <div
+                  key={index}
+                  className="item-card reveal visible"
+                  style={{ transitionDelay: `${index * 50}ms` }}
+                >
+                  <div className="item-card__image-wrapper">
+                    <img src={item.image} alt={item.name} className="item-card__image" loading="lazy" />
+                  </div>
+                  <div className="item-card__content">
+                    <h3 className="item-card__title">{item.name}</h3>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="cta-banner">
         <div className="cta-banner__content">

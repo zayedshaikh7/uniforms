@@ -22,11 +22,11 @@ export default function Footer() {
         <div className="footer__col">
           <h4 className="footer__heading">Product Categories</h4>
           <ul className="footer__links">
-            <li><Link to="/category-industrial">Industrial Safety</Link></li>
-            <li><Link to="/category-medical">Medical & Healthcare</Link></li>
-            <li><Link to="/category-hospitality">Hospitality & F&B</Link></li>
-            <li><Link to="/category-corporate">Corporate Wear</Link></li>
-            <li><Link to="/category-specialty">Specialty Uniforms</Link></li>
+            <li><Link to="/products/category/industrial">Industrial Safety</Link></li>
+            <li><Link to="/products/category/hospital">Medical & Healthcare</Link></li>
+            <li><Link to="/products/category/hotels">Hospitality & F&B</Link></li>
+            <li><Link to="/products/category/corporate">Corporate Wear</Link></li>
+            <li><Link to="/products/category/aviations">Specialty Uniforms</Link></li>
           </ul>
         </div>
 
