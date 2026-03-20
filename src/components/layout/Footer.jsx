@@ -24,9 +24,11 @@ export default function Footer() {
           <ul className="footer__links">
             <li><Link to="/products/category/industrial">Industrial Safety</Link></li>
             <li><Link to="/products/category/hospital">Medical & Healthcare</Link></li>
-            <li><Link to="/products/category/hotels">Hospitality & F&B</Link></li>
+
             <li><Link to="/products/category/corporate">Corporate Wear</Link></li>
-            <li><Link to="/products/category/aviations">Specialty Uniforms</Link></li>
+            <li><Link to="/products/category/polo-tshirts">Polo Tshirts</Link></li>
+            <li><Link to="/products/category/security">Security/Police/Army</Link></li>
+            <li><Link to="/products/category/home-service">Home Service</Link></li>
           </ul>
         </div>
 
